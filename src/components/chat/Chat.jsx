@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
 
@@ -6,10 +6,17 @@ const Chat = () => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
 
+  const endRef = useRef(null);
+
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
     setOpen(false);
   };
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   return (
     <div className="chat">
       <div className="top">
@@ -87,7 +94,10 @@ const Chat = () => {
         </div>
         <div className="message own">
           <div className="texts">
-            <img src="https://images.pexels.com/photos/26776499/pexels-photo-26776499/free-photo-of-a-black-and-white-photo-of-rocks-in-the-water.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            <img
+              src="https://images.pexels.com/photos/26776499/pexels-photo-26776499/free-photo-of-a-black-and-white-photo-of-rocks-in-the-water.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt=""
+            />
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
               ducimus molestiae tempore sunt consectetur amet explicabo,
@@ -97,6 +107,7 @@ const Chat = () => {
             <span>1 min ago</span>
           </div>
         </div>
+        <div ref={endRef}></div>
       </div>
       <div className="bottom">
         <div className="icons">
