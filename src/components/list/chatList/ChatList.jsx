@@ -1,11 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import "./chatList.css";
+import AddUser from "./addUser/addUser";
 const ChatList = () => {
   const [addMode, setAddMode] = useState(false);
   return (
-    <div
-      className={`chatList`}
-    >
+    <div className={`chatList`}>
       <div className="search">
         <div className="searchBar">
           <img src="./search.png" alt="" />
@@ -102,6 +101,7 @@ const ChatList = () => {
           <p>Hello</p>
         </div>
       </div>
+      {addMode && <AddUser />}
     </div>
   );
 };
